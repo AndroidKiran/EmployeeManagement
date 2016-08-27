@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+		<hibernate-mapping>
+		
+			<class name="com.pojo.masters.AddProductActionPojo" table="PRODUCT_DETAILS">
+			
+				<id name="seq_no" column="SEQ_NO" type="java.lang.Integer">
+					<generator class="increment"></generator>				
+				</id>
+			
+				<property name="product_name" column="PRODUCT_NAME" type="java.lang.String"></property>
+				<property name="product_id" column="PRODUCT_ID" type="java.lang.String" unique-key="true" unique="true"></property>
+				
+				<property name="ingrediants" column="INGREDIANTS" type="java.lang.String"></property>
+				<property name="dosage_form" column="DOSAGE_FORM" type="java.lang.String"></property>
+				<property name="indications" column="INDICATIONS" type="java.lang.String"></property>
+				<property name="reference_id" column="REFERENCE_ID" type="java.lang.Integer"></property>
+				<property name="dos_db" column="DOS" type="java.util.Date"></property>
+				<property name="photo" column="PROD_LOGO" type="binary"></property>
+				<property name="photo_name" column="LOGO_NAME" type="java.lang.String"></property>
+							
+			</class>
+		
+		</hibernate-mapping>

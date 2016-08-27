@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+		<hibernate-mapping>
+		
+			<class name="com.pojo.PortalAppPojo" table="PORTALAPP">
+			
+				<id name="appNo" column="APP_NO" type="java.lang.Integer">
+					<generator class="increment"></generator>	
+				</id>
+				
+				<property name="parentId" column="PARENTID" type="java.lang.Integer"/>
+				<property name="portalApp" column="PORTALAPP" type="java.lang.String" />
+			
+			</class>
+		
+		</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+		<hibernate-mapping>
+		
+			<class name="com.pojo.masters.CreateHolidayActionPojo" table="HOLIDAY_TABLE">
+			
+				<id name="seq_no" column="SEQ_NO" type="java.lang.Integer">
+					<generator class="increment"></generator>				
+				</id>
+			
+				<property name="holidayRegion" column="HOLIDAYREGION" type="java.lang.Integer" ></property>
+				<property name="holidayDateDB" column="HOLIDAYDATE" type="java.util.Date" ></property>
+				<property name="holidayDesc" column="HOLIDAYDESC" type="java.lang.String" ></property>
+				
+			</class>
+		
+		</hibernate-mapping>

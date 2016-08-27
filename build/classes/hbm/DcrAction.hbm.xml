@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+		<hibernate-mapping>
+		
+			<class name="com.pojo.medicalRepresentative.DcrActionPojo" table="DCR_DETAILS">
+			
+				<id name="seq_no" column="SEQ_NO" type="java.lang.Integer">
+					<generator class="increment"></generator>				
+				</id>
+				
+				<property name="time" column="TIME" type="java.lang.Integer"></property>
+				<property name="remarks" column="REMARKS" type="java.lang.String"></property>
+				<property name="tourDateDB" column="TOURDATE" type="java.util.Date"></property>
+				<property name="nxtVisitDB" column="NXT_VISIT_DATE" type="java.util.Date"></property>
+				<property name="userName" column="USERNAME" type="java.lang.String"></property>
+				<property name="descDoc" column="DESC_DOC" type="java.lang.Integer"></property>				
+				<property name="descChem" column="DESC_CHEM" type="java.lang.Integer"></property>
+				<property name="workType" column="WORK_TYPE" type="java.lang.Integer"></property>
+				<property name="workedWith" column="WORKED_WITH_DESIGNATION" type="java.lang.Integer"></property>
+				<property name="topicDiss" column="TOPIC_DISCUSSION" type="java.lang.Integer"></property>
+				<property name="empId" column="EMP_ID" type="java.lang.String"></property>
+				<property name="createdDate" column="CREATED_DATE" type="java.util.Date"></property>
+				
+			</class>
+		
+		</hibernate-mapping>

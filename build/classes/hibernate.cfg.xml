@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+ 
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost/rx</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"></property>
+    <property name="show_sql">true</property> 
+
+    <mapping resource="/hbm/LoginAction.hbm.xml"/>
+    <mapping resource="/hbm/PortalAppAction.hbm.xml"/>
+    <mapping resource="/hbm/CreateRoleAction.hbm.xml"/>
+    <mapping resource="/hbm/CreateUserAction.hbm.xml"/>
+    <mapping resource="/hbm/TourPlanningAction.hbm.xml"/>
+    <mapping resource="/hbm/TourPurposeAction.hbm.xml"/>
+    <mapping resource="/hbm/CreateRegionAction.hbm.xml"/>
+    <mapping resource="/hbm/CreateHolidayAction.hbm.xml"/>
+    <mapping resource="/hbm/DcrAction.hbm.xml"/>
+    <mapping resource="/hbm/OrderBookingAction.hbm.xml"/>
+    <mapping resource="/hbm/TimeAction.hbm.xml"/>
+    <mapping resource="/hbm/DesignationAction.hbm.xml"/>
+    <mapping resource="/hbm/BloodGroupAction.hbm.xml"/>
+    <mapping resource="/hbm/CityAction.hbm.xml"/>
+    <mapping resource="/hbm/StateAction.hbm.xml"/>
+    <mapping resource="/hbm/WorkTypeAction.hbm.xml"/>
+    <mapping resource="/hbm/TopicDiscussionAction.hbm.xml"/>
+    
+    <mapping resource="/hbm/AddDoctorAction.hbm.xml"/>
+    <mapping resource="/hbm/AddCategoryAction.hbm.xml"/>
+    <mapping resource="/hbm/AddChemistAction.hbm.xml"/>
+    <mapping resource="/hbm/AddMRAction.hbm.xml"/>
+    <mapping resource="/hbm/AddProductAction.hbm.xml"/>
+    <mapping resource="/hbm/AddTerritoryAction.hbm.xml"/>
+    <mapping resource="/hbm/AddReferenceAction.hbm.xml"/>
+
+
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+		<hibernate-mapping>
+		
+			<class name="com.pojo.masters.AddReferenceActionPojo" table="REF_DETAILS">
+			
+				<id name="ref_id" column="REF_ID" type="java.lang.Integer">
+					<generator class="increment"></generator>				
+				</id>
+			
+				<property name="ref_path" column="REF_PATH" type="java.lang.String"></property>
+				<property name="ref_type" column="REF_TYPE" type="java.lang.String"></property>
+				
+			</class>
+		
+		</hibernate-mapping>

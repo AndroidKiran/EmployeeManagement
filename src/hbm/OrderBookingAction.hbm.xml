@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+		<hibernate-mapping>
+		
+			<class name="com.pojo.medicalRepresentative.OrderBookingActionPojo" table="ORDER_BOOKING">
+			
+				<id name="seq_no" column="SEQ_NO" type="java.lang.Integer">
+					<generator class="increment"></generator>				
+				</id>
+				
+				<property name="productId" column="PRODUCT_ID" type="java.lang.String"></property>
+				<property name="qty" column="QTY" type="java.lang.Integer"></property>
+				<property name="chemId" column="CHEMIST_ID" type="java.lang.Integer"></property>
+				<property name="userName" column="USERNAME" type="java.lang.String"></property>
+				<property name="empId" column="EMP_ID" type="java.lang.String"></property>
+				<property name="orderDateDB" column="ORDER_DATE" type="java.util.Date"></property>
+				<property name="deliveryDateDB" column="DELIVERY_DATE" type="java.util.Date"></property>
+				<property name="createdDate" column="CREATED_DATE" type="java.util.Date"></property>
+				<property name="updatedDate" column="UPDATED_DATE" type="java.util.Date"></property>
+				
+				
+			</class>
+		
+		</hibernate-mapping>

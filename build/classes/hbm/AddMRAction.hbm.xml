@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+		<hibernate-mapping>
+		
+			<class name="com.pojo.masters.AddMRActionPojo" table="MR_DETAILS">
+			
+				<id name="seq_no" column="SEQ_NO" type="java.lang.Integer">
+					<generator class="increment"></generator>				
+				</id>
+			
+				<property name="emp_name" column="EMP_NAME" type="java.lang.String" ></property>
+				<property name="dsg_id" column="DSG_ID" type="java.lang.String"></property>
+				<property name="doj_db" column="DOJ" type="java.util.Date"></property>
+				<property name="dob_db" column="DOB" type="java.util.Date"></property>
+				<property name="blood_grp_id" column="BLOOD_GRP_ID" type="java.lang.Integer"></property>
+				<property name="contact_no" column="CONTACT_NO" type="java.lang.String"></property>
+				<property name="email_id" column="EMAIL_ID" type="java.lang.String"></property>
+				<property name="emg_contact_no" column="EMG_CONTACT_NO" type="java.lang.String"></property>
+				<property name="active" column="ACTIVE" type="java.lang.Boolean"></property>
+				<property name="address_1" column="ADDRESS_1" type="java.lang.String"></property>
+				<property name="address_2" column="ADDRESS_2" type="java.lang.String"></property>
+				<property name="city_id" column="CITY_ID" type="java.lang.Integer"></property>
+				<property name="state_Id" column="STATE_ID" type="java.lang.Integer"></property>
+				<property name="ter_id" column="TER_ID" type="java.lang.String"></property>
+				<property name="emp_id" column="EMP_ID" type="java.lang.String" unique-key="true" unique="true" not-null="true" ></property>
+				
+				
+			</class>
+		
+		</hibernate-mapping>

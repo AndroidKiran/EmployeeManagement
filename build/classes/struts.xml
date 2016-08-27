@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+ <struts>
+ 	
+   <!-- constant name="struts.devMode" value="true" /-->  
+  <!--  <constant name="struts.ui.theme" value="css_xhtml" />    -->
+   
+   <package name="com.rx" extends="json-default" >
+   	
+   		<!-- Action for getAllModules -->
+   		
+		<action name="getAllModules" method="getAllModules" class="com.rx.PortalAppAction" >
+			<result name="SUCCESS" type="json"/><!-- pages/success.jsp</result -->
+			<result name="input">images/favicon.ico</result>
+		</action>
+	</package> 
+     
+     
+   <package name="default" extends="struts-default">   
+   
+   	<global-results>
+   		<result name="exception">pages/errorPage/error.jsp</result>
+   		<result name="sqlException">pages/errorPage/error.jsp</result>
+   	</global-results>
+   	<global-exception-mappings>
+   		<exception-mapping result="sqlException" exception="java.sql.SQLException"/>
+   		<exception-mapping result="exception" exception="java.lang.Exception"/>
+   	</global-exception-mappings>
+   		
+   		<!-- 
+   			 Security check for login.
+   		 -->
+        <action name="j_security_check" method="securityCheck" class="com.rx.LoginAction">
+            <result name="SUPERUSER">pages/superUser.jsp</result>
+            <result name="MR">pages/otherUsers/mr.jsp</result>
+            <result name="TBM">pages/otherUsers/tbm.jsp</result>
+            <result name="ABM">pages/otherUsers/abm.jsp</result>
+            <result name="RBM">pages/otherUsers/rbm.jsp</result>
+            <result name="ZBM">pages/otherUsers/zbm.jsp</result>
+            <result name="NSM">pages/otherUsers/nsm.jsp</result>
+            <result name="ADMIN">pages/otherUsers/admin.jsp</result>
+            <result name="ERROR">pages/login.jsp</result>
+            <result  name="input">images/favicon.ico</result>
+      	</action>
+      	
+      	
+     <!-- 
+     		Unique Check for User Name In Create User
+      -->
+      	<action name="uniqueCheck" method="uniqueCheck" class="com.rx.CreateUserAction">
+      		<result name="SUCCESS">pages/userManagement/createUser.jsp</result>
+      	</action>
+      	
+     <!-- 
+     		Search User for Administration
+      -->
+      	<action name="SearchUser" method="searchUser" class="com.rx.CreateUserAction">
+      		<result name="SUCCESS">pages/userManagement/searchUser.jsp</result>
+      		<result name="EMPTY">pages/userManagement/searchUser.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	
+      <!-- 
+      		Action to edit User after search from database for Administration
+       -->
+       	<action name="SetupUpdateUser" method="setupUpdateUser" class="com.rx.CreateUserAction">
+       		<result name="SUCCESS">pages/userManagement/editUser.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>       	
+       	</action>
+       	
+       <!-- 
+       		Action to Update User Details in Database for Administration
+      	 -->
+       	 <action name="UpdateUser" method="updateUser" class="com.rx.CreateUserAction">
+       	 	<result name="SUCCESS">pages/result/createAck.jsp</result>
+      	 	<result name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	 </action>
+      	
+      	<!-- 
+      		Action to populate Region for Create Holiday
+      	 -->
+      	<action name="populateRegion" method="execute" class="com.rx.masters.CreateHolidayAction">
+      		<result name="SUCCESS">pages/masters/createHoliday.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	
+      	<!-- 
+      		Action for Create Holiday
+      	 -->
+      	 <action name="CreateHoliday" method="createHoliday" class="com.rx.masters.CreateHolidayAction">
+      	 	<result name="SUCCESS">pages/result/createAck.jsp</result>
+      	 	<result name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+      	 </action>
+      	
+      	<!-- 
+      		Action for creating Region 
+      	-->
+      	<action name="CreateRegion" method="createRegion" class="com.rx.masters.CreateRegionAction">
+      		<result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	
+      	<!-- 
+      		Action for creating User Tour Plan 
+      	-->
+      	<action name="CreateUserTourPlan" method="createUserTourPlan" class="com.rx.medicalRepresentative.TourPlanningAction">
+      		<result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	
+      	
+      	<!-- 
+      		Action for creating Roles 
+      	-->
+      	<action name="CreateRole" method="createRole" class="com.rx.masters.CreateRoleAction">
+      		<result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/error.jsp</result>
+      	</action>
+      	
+      	<!-- 
+      		Action for Create User 
+      	-->
+      	<action name="CreateUser" method="createUser" class="com.rx.CreateUserAction">
+      		<result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/error.jsp</result>
+      	</action>
+      	
+      	<!-- 
+      		Action to populate Roles for Create User
+      	 -->
+      	<action name="populateRole" method="execute" class="com.rx.CreateUserAction">
+      		<result name="SUCCESS">pages/userManagement/createUser.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/error.jsp</result>
+      	</action>
+      	
+      	<!-- Action for accessing Inbox -->
+      	<action name="inbox" method="invokeInbox" class="com.rx.LoginAction">
+      		<result name="SUCCESS">pages/inbox.jsp</result>
+      		<result name="input">images/favicon.ico</result>
+      	</action>
+      	
+      	
+      	
+      	<!-- Action for Sign-Out -->
+      	<action name="logout" method="logOut" class="com.rx.LoginAction">
+      		<result name="SUCCESS">pages/login.jsp</result>
+      		<result name="input">images/favicon.ico</result>
+      	</action>
+      	
+      	<action name="chgPassword" method="chgPassword" class="com.rx.ChgPasswordAction">
+      		<result name="SUCCESS">success.jsp</result>
+      		
+      		<result name="input">images/favicon.ico</result>
+      	</action>  
+      	
+      	
+      	<!-- Action For Tour Planning -->
+      	
+      	<action name="DocAndChemistList" method="execute" class="com.rx.medicalRepresentative.TourPlanningAction">
+      		<result name="SUCCESS">pages/medicalRepresentative/tourPlanningNew.jsp</result>      	
+      		<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+	      	<result name="SESSION_INVALID">pages/login.jsp</result>
+      	</action>
+      	<action name="searchTourPlanMR" method="searchTourPlanMR" class="com.rx.medicalRepresentative.TourPlanningAction">
+      		<result name="SUCCESS">pages/medicalRepresentative/searchResultPageOfTourPlan.jsp</result>      	
+      		<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+	      	<result name="SESSION_INVALID">pages/login.jsp</result>
+      	</action>
+      	
+      	<!-- 
+      		Action to go back to tourPlanningNew.jsp after search of tour plan
+      	 -->
+      	<action name="backToTourPlanForm" method="execute" class="com.rx.medicalRepresentative.TourPlanningAction">
+      		<result name="SUCCESS">pages/medicalRepresentative/tourPlanningNew.jsp</result>      	
+      		<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+	      	<result name="SESSION_INVALID">pages/login.jsp</result>
+      	</action>
+      	
+      	<!-- Action For Edit Tour Plan -->
+      	
+      	<action name="editTP" method="editTP" class="com.rx.medicalRepresentative.TourPlanningAction">
+      		<result name="SUCCESS">pages/medicalRepresentative/editTP.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	<action name="EditUserTourPlan" method="editUserTourPlan" class="com.rx.medicalRepresentative.TourPlanningAction">
+      		<result name="SUCCESS">pages/result/updatedAck.jsp</result>
+      		<result name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	
+      	
+      	<!-- 
+      		Action to Search Holiday for DCR from Database
+       -->
+           <action name="searchHolidayForDCR" method="searchHoliday" class="com.rx.masters.CreateHolidayAction">
+	           	<result name="SUCCESS" type="redirectAction">openDCR</result>
+	      		<result  name="input">images/favicon.ico</result>
+	      		<result name="ERROR">pages/errorPage/error.jsp</result>
+           </action>
+      	
+      	<!-- 
+      		Action for Dcr
+      	 -->
+      	
+      	<action name="openDCR" method="openDCR" class="com.rx.medicalRepresentative.DcrAction">
+      		<result name="SUCCESS">pages/medicalRepresentative/DCRNew.jsp</result>      	
+      		<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+    <!-- 
+    	<action name="ReopenDCR" method="reopenDCR" class="com.rx.medicalRepresentative.DcrAction">
+      		<result name="SUCCESS">pages/medicalRepresentative/DCRNew.jsp</result>      	
+      		<result  name="input">pages/medicalRepresentative/DCRNew.jsp</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+     -->
+      	<action name="CreateDCR" method="createDCR" class="com.rx.medicalRepresentative.DcrAction">
+      		<result name="SUCCESS">pages/result/submittedSuccessfully.jsp</result>      	
+      		<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	<action name="searchDCRFromDB" method="searchDCR" class="com.rx.medicalRepresentative.DcrAction">
+      		<result name="SUCCESS">pages/medicalRepresentative/dcrSearchResult.jsp</result>      	
+      		<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	
+      	<!-- 
+      		Actions For Order Booking
+      	 -->
+      	 <action name="chemAndProdList" method="chemAndProdList" class="com.rx.medicalRepresentative.OrderBookingAction">
+      	 	<result name="SUCCESS">pages/medicalRepresentative/orderBooking.jsp</result>
+      	 	<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	 </action>
+      	 <action name="BookOrder" method="bookOrder" class="com.rx.medicalRepresentative.OrderBookingAction">
+      	 	<result name="SUCCESS">pages/result/createAck.jsp</result>
+      	 	<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	 </action>
+      	 
+      	 <!-- 
+      	 	Action to search Booked Order From DB
+      	  -->
+      	<action name="SearchBookedOrder" method="searchBookedOrder" class="com.rx.medicalRepresentative.OrderBookingAction">
+      		<result name="SUCCESS">pages/medicalRepresentative/searchOfOrderBooking.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	</action>
+      	
+      	<!-- 
+      		Action to go back to order booking form from search page
+      	 -->
+      	 <action name="backToOrderBookForm" method="chemAndProdList" class="com.rx.medicalRepresentative.OrderBookingAction">
+      	 	<result name="SUCCESS">pages/medicalRepresentative/orderBooking.jsp</result>
+      	 	<result  name="input">images/favicon.ico</result>
+	      	<result name="ERROR">pages/errorPage/error.jsp</result>
+      	 </action>
+      	
+      	<!-- 
+      			TRANSACTIONS
+      	 -->
+      
+      <!-- 
+      		Action to Search Holiday from Database
+       -->
+           <action name="searchHoliday" method="searchHoliday" class="com.rx.masters.CreateHolidayAction">
+	           	<result name="SUCCESS">pages/transactions/searchCreatedHoliday.jsp</result>
+	      		<result  name="input">images/favicon.ico</result>
+	      		<result name="ERROR">pages/errorPage/error.jsp</result>
+           </action>
+      <!-- 
+      		Action to Search Holiday for MR from Database
+       -->
+           <action name="searchHolidayForMR" method="searchHoliday" class="com.rx.masters.CreateHolidayAction">
+	           	<result name="SUCCESS">pages/medicalRepresentative/tourPlanningNew.jsp</result>
+	      		<result  name="input">images/favicon.ico</result>
+	      		<result name="ERROR">pages/errorPage/error.jsp</result>
+           </action>
+          
+       <!-- 
+      		Action to Edit Holiday in Database
+       -->
+       
+       	<action name="editHoliday" method="editHoliday" class="com.rx.masters.CreateHolidayAction">
+       		<result name="SUCCESS">pages/masters/editHoliday.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	
+       <!-- 
+      		Action to Update Holiday in Database
+       --> 	
+       	
+       	<action name="UpdateHoliday" method="createHoliday" class="com.rx.masters.CreateHolidayAction">
+       		<result name="SUCCESS">pages/result/updatedAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	
+       <!-- 
+      		Action to Delete Holiday in Database
+       -->
+       
+       	<action name="deleteHoliday" method="deleteHoliday" class="com.rx.masters.CreateHolidayAction">
+       		<result name="SUCCESS">pages/result/deleteAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	
+       	</action>
+       	
+       	
+       	
+       	
+       	
+       	
+       	
+       	
+       	
+       		<!--           Search MR Action                 -->
+   		
+   		<action name="searchMR" method="searchMR" class="com.rx.masters.AddMRAction">
+   			<result name="SUCCESS">pages/masters/searchMR.jsp</result>
+   			<result name="input">pages/masters/searchMR.jsp</result>
+   		</action>  		
+   
+   		<!--           Edit MR Action                 -->
+   		
+   		<action name="editMR" method="editMR" class="com.rx.masters.AddMRAction">
+   			<result name="SUCCESS">pages/masters/editMR.jsp</result>
+   			<result name="input">pages/masters/editMR.jsp</result>
+   		</action>
+   		
+   		<!--           View MR Action                 -->
+   		
+   		<action name="viewMR" method="editMR" class="com.rx.masters.AddMRAction">
+   			<result name="SUCCESS">pages/masters/viewMR.jsp</result>
+   			<result name="input">pages/masters/viewMR.jsp</result>
+   		</action>
+   		
+   		<!--           Update MR Action                 -->
+   		
+   		<action name="updateMR" method="updateMR" class="com.rx.masters.AddMRAction">
+   			<result name="SUCCESS">pages/result/updatedAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+   		</action>
+   		
+   		<!--           Add MR Action                     -->
+   		
+    	<action name="addMR"  method="submitMR" class="com.rx.masters.AddMRAction">
+           <result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <action name="invokeTerritoryListForMR" method="invokeTerritoryList" class="com.rx.masters.AddMRAction">
+        	<result name="SUCCESS">pages/masters/addMR.jsp</result>
+        	<result name="input">pages/masters/addMR.jsp</result>
+        </action>
+        
+        <!--            Add Territory Action             -->
+        
+        <action name="addTerritory" method="submitTerritory" class="com.rx.masters.AddTerritoryAction">
+        	<result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <!--            Search Territory Action             -->
+        
+        <action name="searchTerritory" method="searchTerritory" class="com.rx.masters.AddTerritoryAction">
+        	<result name="SUCCESS">pages/masters/addTerritory.jsp</result>
+        	<result name="input">pages/masters/addTerritory.jsp</result>
+        </action>
+        
+        <!--  Edit Territory -->
+        
+        <action name="editTerritory" method="editTerritory" class="com.rx.masters.AddTerritoryAction">
+        	<result name="SUCCESS">pages/transactions/editTerritoryNew.jsp</result>
+        	<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <!--  Update Territory -->
+        
+        <action name="UpdateTerritory" method="updateTerritory" class="com.rx.masters.AddTerritoryAction">
+        	<result name="SUCCESS">pages/result/updatedAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <!--  Delete Territory -->
+        
+        <action name="deleteTerritory" method="deleteTerritory" class="com.rx.masters.AddTerritoryAction">
+        	<result name="SUCCESS">pages/result/deleteAck.jsp</result>
+        	<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <!--            Add Reference Action             -->
+        
+        <action name="addReference" method="submitReference" class="com.rx.masters.AddReferenceAction">
+        	<result name="SUCCESS">pages/masters/addReference.jsp</result>
+        	<result name="input">error.jsp</result>
+        </action>
+        
+        <!--             Add Category Details             -->
+        
+        <action name="addCategory" method="submitCategory" class="com.rx.masters.AddCategoryAction">
+        	<result name="SUCCESS">pages/masters/addCategory.jsp</result>
+        	<result name="input">pages/masters/addCategory.jsp</result>
+        </action>
+        
+        <!--             Add Doctor Action                -->
+        
+        <action name="addDoctor" method="submitDoctor" class="com.rx.masters.AddDoctorAction">
+        	<result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <action name="invokeListForDoctor" method="invokeList" class="com.rx.masters.AddDoctorAction">
+        	<result name="SUCCESS">pages/masters/addDoctor.jsp</result>
+        	
+        </action>
+        
+        <!-- Action for Search Doctor -->
+        
+        <action name="territoryListForDoc" method="invokeList" class="com.rx.masters.AddDoctorAction">
+        	<result name="SUCCESS">pages/masters/searchDoctor.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <action name="searchDoctor" method="searchDoctor" class="com.rx.masters.AddDoctorAction">
+        	<result name="SUCCESS">pages/masters/searchDoctor.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <!--  Action To View Doctor -->
+        
+        <action name="viewDoctor" method="viewOrEditDoctor" class="com.rx.masters.AddDoctorAction">
+        	<result name="SUCCESS">pages/masters/viewDoctor.jsp</result>
+   			<result name="input">pages/masters/viewDoctor.jsp</result>
+        </action>
+        
+        <!--  Action To Edit Doctor -->
+        
+        <action name="editDoctor" method="viewOrEditDoctor" class="com.rx.masters.AddDoctorAction">
+        	<result name="SUCCESS">pages/masters/editDoctor.jsp</result>
+   			<result name="input">pages/masters/editDoctor.jsp</result>
+        </action>
+        
+        <!--  Action for Update Doctor -->
+        <action name="UpdateDoctor" method="updateDoctor" class="com.rx.masters.AddDoctorAction">
+        	<result name="SUCCESS">pages/result/updatedAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/error.jsp</result>
+        </action>
+        
+        <!--             Add Chemist Action						 -->
+        
+        <action name="addChemist" method="submitChemist" class="com.rx.masters.AddChemistAction">
+        	<result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/error.jsp</result>
+        </action>
+        
+        <action name="invokeTerritoryListForChemist" method="invokeTerritoryList" class="com.rx.masters.AddChemistAction">
+        	<result name="SUCCESS">pages/masters/addChemist.jsp</result>
+        </action>
+        
+        <!-- Action To search Chemist -->
+        
+        <action name="territoryListForChem" method="invokeTerritoryList" class="com.rx.masters.AddChemistAction">
+        	<result name="SUCCESS">pages/transactions/searchChemist.jsp</result>
+        </action>
+        <action name="searchChemist" method="searchChemist" class="com.rx.masters.AddChemistAction">
+        	<result name="SUCCESS">pages/transactions/searchChemist.jsp</result>
+        	<result  name="input">pages/transactions/searchChemist.jsp</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <!--  Action for Edit and View Chemist -->
+        
+        <action name="viewChemist" method="viewAndEditChemist" class="com.rx.masters.AddChemistAction">
+        	<result name="SUCCESS">pages/transactions/viewChemist.jsp</result>
+   			<result name="input">pages/transactions/viewChemist.jsp</result>
+        </action>
+        <action name="editChemist" method="viewAndEditChemist" class="com.rx.masters.AddChemistAction">
+        	<result name="SUCCESS">pages/transactions/editChemist.jsp</result>
+   			<result name="input">pages/transactions/editChemist.jsp</result>
+        </action>
+        
+        <!--  Action to Update Chemist -->
+        <action name="UpdateChemist" method="submitChemist" class="com.rx.masters.AddChemistAction">
+        	<result name="SUCCESS">pages/result/updatedAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <!--              Add Product Action                       -->
+        
+        <action name="addProduct" method="submitProduct" class="com.rx.masters.AddProductAction">
+        	<result name="SUCCESS">pages/result/createAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <action name="invokeListForProduct" method="invokeList" class="com.rx.masters.AddProductAction">
+        	<result name="SUCCESS">pages/masters/addProduct.jsp</result>
+        	<result name="input">error.jsp</result>
+        </action>
+        
+        <!-- Action For Search Product -->
+        <action name="searchProduct" method="searchProduct" class="com.rx.masters.AddProductAction">
+        	<result name="SUCCESS">pages/transactions/searchProduct.jsp</result>
+        	<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+          <!--  Action To View Product -->
+        
+        <action name="viewProduct" method="searchForViewOrEdit" class="com.rx.masters.AddProductAction">
+        	<result name="SUCCESS">pages/transactions/viewProduct.jsp</result>
+   			<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+        <!--  Action To Edit Product -->
+        
+        <action name="editProduct" method="searchForViewOrEdit" class="com.rx.masters.AddProductAction">
+        	<result name="SUCCESS">pages/transactions/editProduct.jsp</result>
+   			<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+          <!--  Action for Update Product -->
+        <action name="UpdateProduct" method="updateProduct" class="com.rx.masters.AddProductAction">
+        	<result name="SUCCESS">pages/result/updatedAck.jsp</result>
+      		<result  name="input">images/favicon.ico</result>
+      		<result name="ERROR">pages/errorPage/error.jsp</result>
+        </action>
+        
+       
+     <!-- 
+     		Excel Uploader
+     -->
+     
+    	<action name="UploadTerritory" method="submitTerritoryExcel" class="com.rx.adminTransaction.ReadExcelFile">
+    		<result name="SUCCESS">pages/result/createAck.jsp</result>
+    		<result name="INPUT">pages/errorPage/error.jsp</result>
+    	</action>
+       
+       <!-- 
+       		Excel Import for Doctor
+        -->
+       	<action name="showUploaderDoctor" method="showUploader" class="com.rx.adminTransaction.ReadExcelFile">
+       		<result name="SUCCESS">pages/uplodeExcel/uploadDoctor.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	<action name="ImportDoctor" method="importDoctor" class="com.rx.adminTransaction.ReadExcelFile">
+       		<result name="SUCCESS">pages/result/uploadedAck.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       <!-- 
+       		Excel Import for MR
+        -->
+       	<action name="showUploaderMR" method="showUploader" class="com.rx.adminTransaction.ReadExcelFile">
+       		<result name="SUCCESS">pages/uplodeExcel/uploadMR.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	<action name="ImportMR" method="importMR" class="com.rx.adminTransaction.ReadExcelFile">
+       		<result name="SUCCESS">pages/result/uploadedAck.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	
+       	
+<!-- 
+	Excel Import Starts From here
+-->
+       	
+		<!-- 
+			Excel Import for Chemist
+		-->
+       	 <action name="showUploaderChemist" method="showUploader" class="com.rx.adminTransaction.ReadExcelFile">
+       	 	<result name="SUCCESS">pages/uplodeExcel/uploadChemist.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	 </action>
+       	 <action name="ImportChemist" method="importChemist" class="com.rx.adminTransaction.ReadExcelFile">
+       		<result name="SUCCESS">pages/result/uploadedAck.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	<!-- 
+       		Excel Import for Product
+       	 -->
+       	 <action name="showUploaderProduct" method="showUploader" class="com.rx.adminTransaction.ReadExcelFile">
+       	 	<result name="SUCCESS">pages/uplodeExcel/uploadProduct.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	 </action>
+       	 <action name="ImportProduct" method="importProduct" class="com.rx.adminTransaction.ReadExcelFile">
+       		<result name="SUCCESS">pages/result/uploadedAck.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	<!-- 
+       		Excel Import for DCR
+       	 -->
+       	 <action name="popUserForDcrImport" method="popUserForSearchTPForAdmin" class="com.rx.adminTransaction.AdminTransaction">
+       	 	<result name="SUCCESS">pages/uplodeExcel/uploadDCR.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	 </action>
+       	 <action name="ImportDCR" method="importDCR" class="com.rx.adminTransaction.ReadExcelFile">
+       		<result name="SUCCESS">pages/result/uploadedAck.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+
+<!-- 
+	Excel Export Starts From here
+-->
+
+  	    <!-- 
+       		Excel Import for Territory
+       	 -->	
+       	 <action name="ExportTerritory" method="exportTerritory" class="com.rx.adminTransaction.CreateExcelFile">
+       	 	<result name="SUCCESS">pages/result/uploadedAck.jsp</result>
+       		<result name="INPUT">pages/errorPage/error.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	 </action>
+       	
+<!-- 
+	adminTransaction
+ -->
+       	 <!-- Action for search TourPlan for Admin -->
+       	 
+       	 <action name="popUserForSearchTPForAdmin" method="popUserForSearchTPForAdmin" class="com.rx.adminTransaction.AdminTransaction">
+       		<result name="SUCCESS">pages/adminTransaction/searchTourPlanUserWise.jsp</result>
+       		<result name="INPUT">pages/adminTransaction/searchTourPlanUserWise.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	 <action name="searchTourPlanAdmin" method="searchTPaDMIN" class="com.rx.adminTransaction.AdminTransaction">
+       		<result name="SUCCESS">pages/adminTransaction/searchTourPlanUserWise.jsp</result>
+       		<result name="INPUT">pages/adminTransaction/searchTourPlanUserWise.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	
+       	 <!-- Action for search DCR for Admin -->
+       	 
+       	 <action name="popUserForSearchDCRForAdmin" method="popUserForSearchTPForAdmin" class="com.rx.adminTransaction.AdminTransaction">
+       		<result name="SUCCESS">pages/adminTransaction/searchDCRuserWise.jsp</result>
+       		<result name="INPUT">pages/adminTransaction/searchDCRuserWise.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	 <action name="searchDCRAdmin" method="searchDCRAdmin" class="com.rx.adminTransaction.AdminTransaction">
+       		<result name="SUCCESS">pages/adminTransaction/searchDCRuserWise.jsp</result>
+       		<result name="INPUT">pages/adminTransaction/searchDCRuserWise.jsp</result>
+       		<result name="ERROR">pages/errorPage/error.jsp</result>
+       	</action>
+       	
+ </package>
+</struts>

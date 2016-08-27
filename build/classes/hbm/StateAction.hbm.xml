@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+		
+		<hibernate-mapping>
+		
+			<class name="com.pojo.masters.StateActionPojo" table="STATE">
+			
+				<id name="stateId" column="STATE_ID" type="java.lang.Integer">
+					<generator class="increment"></generator>				
+				</id>
+			
+				<property name="stateName" column="STATE_NAME" type="java.lang.String"></property>
+				
+			</class>
+		
+		</hibernate-mapping>
